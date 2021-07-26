@@ -499,12 +499,12 @@ func (r *renderer) renderFormattedCodeBlock(w io.Writer, code string) {
 	code = strings.TrimRight(code, "\n")
 
 	// r.addPad(GreenBold("┃ "))
-	r.renderHorizontalRule(w)
 	output, _ := text.WrapWithPad(code, 9999, r.pad())
-	r.renderHorizontalRule(w)
 	// r.popPad()
 
+	r.renderHorizontalRule(w)
 	_, _ = fmt.Fprint(w, output)
+	r.renderHorizontalRule(w)
 
 	_, _ = fmt.Fprintf(w, "\n\n")
 }
