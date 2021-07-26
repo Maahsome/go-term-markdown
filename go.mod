@@ -3,7 +3,7 @@ module github.com/Maahsome/go-term-markdown
 go 1.12
 
 require (
-	github.com/Maahsome/go-term-markdown v0.1.4
+	github.com/Maahsome/go-term-markdown v0.1.5
 	github.com/MichaelMure/go-term-text v0.3.1
 	github.com/alecthomas/chroma v0.7.1
 	github.com/eliukblau/pixterm/pkg/ansimage v0.0.0-20191210081756-9fb6cf8c2f75
