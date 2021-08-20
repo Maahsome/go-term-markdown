@@ -429,6 +429,15 @@ func (r *renderer) renderHorizontalRule(w io.Writer) {
 	_, _ = fmt.Fprintf(w, "%s%s\n\n", r.pad(), strings.Repeat("─", r.lineWidth-r.leftPad))
 }
 
+func (r *renderer) renderCodeHorizontalRule(w io.Writer) {
+	// _, _ = fmt.Fprintf(w, "%s%s\n", r.pad(), strings.Repeat("─", 40-r.leftPad))
+	content := r.inlineAccumulator.String()
+	r.inlineAccumulator.Reset()
+	content = fmt.Sprintf("%s%s", r.pad(), strings.Repeat("─", 40-r.leftPad))
+	content = r.headingShade(1)(content)
+	_, _ = fmt.Fprintln(w, content)
+}
+
 func (r *renderer) renderHeading(w io.Writer, level int) {
 	content := r.inlineAccumulator.String()
 	r.inlineAccumulator.Reset()
@@ -502,9 +511,10 @@ func (r *renderer) renderFormattedCodeBlock(w io.Writer, code string) {
 	output, _ := text.WrapWithPad(code, 9999, r.pad())
 	// r.popPad()
 
-	r.renderHorizontalRule(w)
+	r.renderCodeHorizontalRule(w)
 	_, _ = fmt.Fprint(w, output)
-	r.renderHorizontalRule(w)
+	_, _ = fmt.Fprintf(w, "\n")
+	r.renderCodeHorizontalRule(w)
 
 	_, _ = fmt.Fprintf(w, "\n\n")
 }
